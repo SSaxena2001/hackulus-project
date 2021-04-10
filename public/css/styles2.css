@@ -1,0 +1,65 @@
+
+body {
+
+  background-color: #33ccff;
+  animation-name: example;
+  animation-duration: 6s;
+  animation-iteration-count: 100000;
+  animation-direction: alternate;
+}
+
+@keyframes example {
+  0%   {background-color:#f67280 ;}
+  25%  {background-color: #c06c84;}
+  50%  {background-color: #6c5b7b;}
+  100% {background-color: #355c7d;}
+}
+
+
+.shopId{
+position: relative;
+margin: auto;
+margin-top: 15px;
+margin-bottom: 15px;
+}
+.shop_N{
+  position: relative;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.fname{
+  position: relative;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+.lname{
+  position: relative;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+
+}
+.phoneNo{
+  position: relative;
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+.head{
+font-family: 'RocknRoll One', sans-serif;
+font-size: 50px;
+}
+.head:hover{
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+.submit_button{
+  position: relative;
+  margin-top: 45px;
+}

@@ -7,21 +7,32 @@ let accountSid = 'AC96c3da0c228aeec292f6a0018bca3f82';
 let authToken = '09a9617f26c73c35854ea45dd19e411e';
 const client = require('twilio')(accountSid, authToken);
 const app = express();
+app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-
-
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
+})
+
+app.post('/', (req, res) => {
+    if(res.statusCode === 200){
+        res.redirect("/tokenGenerate");
+    } else {
+        res.sendFile(__dirname + '/error.html');
+    }   
+})
+
+app.get("/tokenGenerate", (req, res) => {
+    res.sendFile(__dirname + '/index2.html');
 });
 
 
 
-app.post("/", (req, res) => {
+app.post("/tokenGenerate", (req, res) => {
     let shopNumber = req.body.shopId;
-    let shopName = req.body.shop_n;
+    let shopName = req.body.shop_N;
     let firstName = req.body.fname;
     let lastName = req.body.lname;
     let phoneNumber = req.body.phoneNo;
@@ -45,13 +56,13 @@ app.post("/", (req, res) => {
         service: 'gmail',
         auth: {
             user: 'suvigyasaxena1402@gmail.com',
-            pass: 'suvigya1402'
+            pass: 'Suvigya2001'
         }
     });
     const mailOptions = {
         from: 'suvigyasaxena1402@email.com',
         to: email, 
-        subject: 'Your token is succesfully generated'+shopName, 
+        subject: 'Your token is succesfully generated for Shop '+shopName, 
         html: '<p>Dear '+firstName+''+lastName+'</p> <br><p> Your token for the '+shopName+' is  '+randomtoken+'</p>'
     };
     transporter.sendMail(mailOptions, (err, info)=> {
@@ -63,6 +74,6 @@ app.post("/", (req, res) => {
 });
 
 
-app.listen(port, () => {
-    console.log('Server is running on port' + port);
+app.listen(process.env.PORT||port, () => {
+    console.log('Server is running on port' + process.env.PORT);
 })
